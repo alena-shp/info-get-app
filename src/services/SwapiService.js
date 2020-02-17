@@ -12,29 +12,73 @@ export default class swapiService {
 
   async getAllPeople() {
     const res = await this.getAnswer(`/people/`)
-    return res.results
+    return res.results.map(this._transformPerson)
   }
 
-  getPerson(id) {
-    return this.getAnswer(`/people/${id}/`)
+  async getPerson(id) {
+    const person = await this.getAnswer(`/people/${id}/`)
+    return this._transformPerson(person)
   }
 
   async getAllStarships() {
     const res = await this.getAnswer(`/starships/`)
-    return res.results
+    return res.results.map(this._transformStarship)
   }
 
-  getStarship(id) {
-    return this.getAnswer(`/starships/${id}/`)
+  async getStarship(id) {
+    const starship = await this.getAnswer(`/starships/${id}/`)
+    return this._transformStarship(starship)
   }
 
   async getAllPlanets() {
     const res = await this.getAnswer(`/planets/`)
-    return res.results
+    return res.results.map(this._transformPlanets)
   }
 
-  getPlanet(id) {
-    return this.getAnswer(`/planets/${id}/`)
+  async getPlanet(id) {
+    const planet = await this.getAnswer(`/planets/${id}/`)
+    return this._transformPlanets(planet)
+  }
+
+  getIdItem(item) {
+    const idRegExp = /\/([0-9]*)\/$/
+    return item.url.match(idRegExp)[1]
+  }
+
+  _transformPlanets(planet) {
+    return {
+      id: this.getIdItem(planet),
+      name: planet.name,
+      population: planet.population,
+      rotationPeriod: planet.rotation_period,
+      diameter: planet.diameter
+    }
+  }
+
+  _transformPerson(person) {
+    return {
+      id: this.getIdItem(person),
+      name: person.name,
+      gender: person.gender,
+      hairColor: person.hair_color,
+      height: person.height,
+      mass: person.mass,
+      skinColor: person.skin_color
+    }
+  }
+
+  _transformStarship(starship) {
+    return {
+      id: this.getIdItem(starship),
+      name: starship.name,
+      model: starship.model,
+      manufacturer: starship.manufacturer,
+      costInCredits: starship.cost_in_credits,
+      length: starship.length,
+      crew: starship.crew,
+      passengers: starship.passengers,
+      cargoCapacity: starship.cargo_capacity
+    }
   }
 }
 

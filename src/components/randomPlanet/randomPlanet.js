@@ -6,11 +6,7 @@ export default class RandomPlanet extends React.Component {
   swapiData = new swapiService()
 
   state = {
-    id: null,
-    name: null,
-    population: null,
-    rotationPeriod: null,
-    diameter: null
+    planet: {}
   }
 
   constructor() {
@@ -18,22 +14,19 @@ export default class RandomPlanet extends React.Component {
     this.updataPlanets()
   }
 
+  onPlanetLoaded = planet => {
+    return this.setState({ planet })
+  }
+
   updataPlanets() {
     const id = Math.floor(Math.random() * 18) + 1
-    this.swapiData.getPlanet(id).then(planet => {
-      this.setState({
-        id,
-        name: planet.name,
-        population: planet.population,
-        rotationPeriod: planet.rotation_period,
-        diameter: planet.diameter
-      })
-    })
-    console.log(id)
+    this.swapiData.getPlanet(id).then(this.onPlanetLoaded)
   }
 
   render() {
-    const { id, name, population, rotationPeriod, diameter } = this.state
+    const {
+      planet: { id, name, population, rotationPeriod, diameter }
+    } = this.state
     return (
       <div className="randomPlanet">
         <img
