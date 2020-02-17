@@ -1,12 +1,14 @@
 import React from "react"
 import "./randomPlanet.scss"
 import swapiService from "./../../services/swapiService"
+import Spinner from "../spinner"
 
 export default class RandomPlanet extends React.Component {
   swapiData = new swapiService()
 
   state = {
-    planet: {}
+    planet: {},
+    loading: true
   }
 
   constructor() {
@@ -15,7 +17,7 @@ export default class RandomPlanet extends React.Component {
   }
 
   onPlanetLoaded = planet => {
-    return this.setState({ planet })
+    return this.setState({ planet, loading: false })
   }
 
   updataPlanets() {
@@ -25,8 +27,13 @@ export default class RandomPlanet extends React.Component {
 
   render() {
     const {
-      planet: { id, name, population, rotationPeriod, diameter }
+      planet: { id, name, population, rotationPeriod, diameter },
+      loading
     } = this.state
+
+    if (loading) {
+      return <Spinner />
+    }
     return (
       <div className="randomPlanet">
         <img
