@@ -6,6 +6,7 @@ export default class RandomPlanet extends React.Component {
   swapiData = new swapiService()
 
   state = {
+    id: null,
     name: null,
     population: null,
     rotationPeriod: null,
@@ -18,25 +19,29 @@ export default class RandomPlanet extends React.Component {
   }
 
   updataPlanets() {
-    this.swapiData.getPlanet(7).then(planet => {
+    const id = Math.floor(Math.random() * 18) + 1
+    this.swapiData.getPlanet(id).then(planet => {
       this.setState({
+        id,
         name: planet.name,
         population: planet.population,
         rotationPeriod: planet.rotation_period,
         diameter: planet.diameter
       })
     })
+    console.log(id)
   }
 
   render() {
-    const { name, population, rotationPeriod, diameter } = this.state
+    const { id, name, population, rotationPeriod, diameter } = this.state
     return (
       <div className="randomPlanet">
         <img
           className="randomPlanet__img"
-          src="https://starwars-visualguide.com/assets/img/planets/5.jpg"
+          src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
           alt=""
         />
+
         <div className="randomPlanet__card card">
           <h3 className="card__name">{name}</h3>
           <ul className="card__description">
