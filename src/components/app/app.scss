@@ -1,0 +1,11 @@
+.app {
+  margin: 0 auto;
+  padding: 0 40px;
+  &__description {
+    margin-top: 40px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+  }
+}

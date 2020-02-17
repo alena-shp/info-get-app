@@ -1,0 +1,38 @@
+@import "./../../normalize.scss";
+
+.randomPlanet {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  padding: 20px;
+  background-color: #303030;
+  border-radius: 5px;
+
+  &__img {
+    border-radius: 5px;
+    width: 150px;
+    height: 150px;
+    margin-right: 40px;
+  }
+  &__card {
+    height: 100%;
+    border: none;
+  }
+
+  .card {
+    &__title {
+      margin-bottom: 16px;
+    }
+    &__description {
+      &-item {
+        list-style-type: none;
+        padding: 8px 0;
+        border-top: 1px solid #797979;
+
+        span {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}

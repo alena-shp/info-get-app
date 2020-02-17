@@ -1,0 +1,19 @@
+@import "./../../normalize.scss";
+
+.itemList {
+  background-color: #303030;
+  border-radius: 5px;
+  flex-basis: 40%;
+  margin-right: 30px;
+  &__item {
+    list-style-type: none;
+    padding: 8px 20px;
+    &:not(:last-child) {
+      border-bottom: 1px solid #797979;
+    }
+
+    span {
+      margin-right: 10px;
+    }
+  }
+}
