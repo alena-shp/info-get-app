@@ -1,4 +1,4 @@
-export default class swapiServer {
+export default class swapiService {
   _nameUrl = "https://swapi.co/api"
 
   async getAnswer(url) {
@@ -38,10 +38,10 @@ export default class swapiServer {
   }
 }
 
-const swapi = new swapiServer()
+// const swapi = new swapiService()
 
-swapi.getAllPlanets().then(planets => {
-  planets.forEach(p => {
-    console.log(p.name)
-  })
-})
+// swapi.getAllPlanets().then(planets => {
+//   planets.forEach(p => {
+//     console.log(p.name)
+//   })
+// })

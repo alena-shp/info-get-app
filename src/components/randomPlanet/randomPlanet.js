@@ -1,8 +1,35 @@
 import React from "react"
 import "./randomPlanet.scss"
+import swapiService from "./../../services/swapiService"
 
 export default class RandomPlanet extends React.Component {
+  swapiData = new swapiService()
+
+  state = {
+    name: null,
+    population: null,
+    rotationPeriod: null,
+    diameter: null
+  }
+
+  constructor() {
+    super()
+    this.updataPlanets()
+  }
+
+  updataPlanets() {
+    this.swapiData.getPlanet(7).then(planet => {
+      this.setState({
+        name: planet.name,
+        population: planet.population,
+        rotationPeriod: planet.rotation_period,
+        diameter: planet.diameter
+      })
+    })
+  }
+
   render() {
+    const { name, population, rotationPeriod, diameter } = this.state
     return (
       <div className="randomPlanet">
         <img
@@ -11,19 +38,19 @@ export default class RandomPlanet extends React.Component {
           alt=""
         />
         <div className="randomPlanet__card card">
-          <h3 className="card__title">Planet Name</h3>
+          <h3 className="card__name">{name}</h3>
           <ul className="card__description">
             <li className="card__description-item">
               <span>Population</span>
-              <span>123124</span>
+              <span>{population}</span>
             </li>
             <li className="card__description-item">
-              <span>Rotation Perio</span>
-              <span>43</span>
+              <span>RotationPeriod</span>
+              <span>{rotationPeriod}</span>
             </li>
             <li className="card__description-item">
               <span>Diameter</span>
-              <span>100</span>
+              <span>{diameter}</span>
             </li>
           </ul>
         </div>
