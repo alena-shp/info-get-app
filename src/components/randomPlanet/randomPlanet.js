@@ -26,40 +26,47 @@ export default class RandomPlanet extends React.Component {
   }
 
   render() {
-    const {
-      planet: { id, name, population, rotationPeriod, diameter },
-      loading
-    } = this.state
+    const { planet, loading } = this.state
 
-    if (loading) {
-      return <Spinner />
-    }
+    const spinner = loading ? <Spinner /> : null
+    const content = !loading ? <PlanetView planet={planet} /> : null
+
     return (
       <div className="randomPlanet">
-        <img
-          className="randomPlanet__img"
-          src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
-          alt=""
-        />
-
-        <div className="randomPlanet__card card">
-          <h3 className="card__name">{name}</h3>
-          <ul className="card__description">
-            <li className="card__description-item">
-              <span>Population</span>
-              <span>{population}</span>
-            </li>
-            <li className="card__description-item">
-              <span>RotationPeriod</span>
-              <span>{rotationPeriod}</span>
-            </li>
-            <li className="card__description-item">
-              <span>Diameter</span>
-              <span>{diameter}</span>
-            </li>
-          </ul>
-        </div>
+        {spinner}
+        {content}
       </div>
     )
   }
+}
+
+const PlanetView = ({ planet }) => {
+  const { id, name, population, rotationPeriod, diameter } = planet
+  return (
+    <>
+      <img
+        className="randomPlanet__img"
+        src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
+        alt=""
+      />
+
+      <div className="randomPlanet__card card">
+        <h3 className="card__name">{name}</h3>
+        <ul className="card__description">
+          <li className="card__description-item">
+            <span>Population</span>
+            <span>{population}</span>
+          </li>
+          <li className="card__description-item">
+            <span>RotationPeriod</span>
+            <span>{rotationPeriod}</span>
+          </li>
+          <li className="card__description-item">
+            <span>Diameter</span>
+            <span>{diameter}</span>
+          </li>
+        </ul>
+      </div>
+    </>
+  )
 }
