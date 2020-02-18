@@ -13,9 +13,9 @@ export default class RandomPlanet extends React.Component {
     err: false
   }
 
-  constructor() {
-    super()
+  componentDidMount() {
     this.updataPlanets()
+    setInterval(this.updataPlanets, 5000)
   }
 
   onPlanetLoaded = planet => {
@@ -26,7 +26,7 @@ export default class RandomPlanet extends React.Component {
     this.setState({ err: true, loading: false })
   }
 
-  updataPlanets() {
+  updataPlanets = () => {
     const id = Math.floor(Math.random() * 18) + 1
     this.swapiData
       .getPlanet(id)
