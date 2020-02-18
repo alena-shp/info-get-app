@@ -5,16 +5,28 @@ import ItemList from "../itemList"
 import RandomPlanet from "../randomPlanet/randomPlanet"
 import PersonDetails from "../personDetails/personDetails"
 
-const App = () => {
-  return (
-    <div className="app">
-      <Header />
-      <RandomPlanet />
-      <div className="app__description">
-      <ItemList />
-      <PersonDetails />
+class App extends React.Component {
+  state = {
+    
+    numSelect: 5
+  }
+
+  onItemselected = id => {
+    this.setState({
+      numSelect: id
+    })
+  }
+  render() {
+    return (
+      <div className="app">
+        <Header />
+        <RandomPlanet />
+        <div className="app__description">
+          <ItemList onItemselected={this.onItemselected} />
+          <PersonDetails numSelect={this.state.numSelect}/>
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 export default App

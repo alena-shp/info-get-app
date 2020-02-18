@@ -19,7 +19,8 @@ export default class ItemList extends React.Component {
   renderItems(arr) {
     return arr.map(({ id, name }) => {
       return (
-        <li key={id} className="itemList__item">
+        <li key={id} className="itemList__item"
+        onClick={()=> this.props.onItemselected(id)}>
           <a href="#0">{name}</a>
         </li>
       )
