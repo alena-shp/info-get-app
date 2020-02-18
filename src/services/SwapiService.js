@@ -81,11 +81,3 @@ export default class swapiService {
     }
   }
 }
-
-// const swapi = new swapiService()
-
-// swapi.getAllPlanets().then(planets => {
-//   planets.forEach(p => {
-//     console.log(p.name)
-//   })
-// })
