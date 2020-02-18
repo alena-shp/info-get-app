@@ -8,4 +8,28 @@
     justify-content: center;
     width: 100%;
   }
+  &__action {
+    background-color: rgb(196, 79, 1);
+    color: white;
+    font-size: 18px;
+    outline: none;
+    margin-top: 20px;
+    padding: 16px;
+    border: none;
+    border-radius: 4px;
+    transition: 0.2s;
+    border: 2px solid rgb(196, 79, 1);
+
+    &:active,
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      outline: none;
+      background-color: white;
+      color: rgb(196, 79, 1);
+      border: 2px solid rgb(196, 79, 1);
+    }
+  }
 }
