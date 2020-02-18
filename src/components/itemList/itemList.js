@@ -15,21 +15,26 @@ export default class ItemList extends React.Component {
       console.log(peopleList)
     })
   }
-  render() {
-    const { peopleList } = this.state
 
-    if (peopleList === null) {
-      return <Spinner />
-    }
-
-    const people = peopleList.map(person => {
-      const { id, name } = person
+  renderItems(arr) {
+    return arr.map(({ id, name }) => {
       return (
         <li key={id} className="itemList__item">
           <a href="#0">{name}</a>
         </li>
       )
     })
-    return <ul className="itemList">{people}</ul>
+  }
+
+  render() {
+    const { peopleList } = this.state
+
+    if (!peopleList) {
+      return <Spinner />
+    }
+
+    const items = this.renderItems(peopleList)
+
+    return <ul className="itemList">{items}</ul>
   }
 }
