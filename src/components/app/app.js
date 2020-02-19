@@ -5,8 +5,13 @@ import Header from "../header/header"
 import RandomPlanet from "../randomPlanet/randomPlanet"
 import PersonPage from "../personPage/personPage"
 import ErrorIndicator from "../errorIndicator"
+import swapiService from "../../services/swapiService"
+import ItemList from "../itemList"
+import PersonDetails from "../personDetails/personDetails"
 
 class App extends React.Component {
+
+  swapiData = new swapiService ()
   state = {
     showrandomPlanet: true,
     errorHas: false
@@ -41,8 +46,20 @@ class App extends React.Component {
           Toggle Random Planet
         </button>
         <PersonPage />
-        <PersonPage />
-        <PersonPage />
+
+        <div className="person-page">
+        <ItemList onItemselected={this.onItemselected} 
+        getData={this.swapiData.getAllPlanets}/>
+      </div>
+
+      <div className="person-page">
+        <ItemList onItemselected={this.onItemselected} 
+        getData={this.swapiData.getAllStarships}/>
+      </div>
+
+
+
+        
       </div>
     )
   }
