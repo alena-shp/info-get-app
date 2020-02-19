@@ -15,7 +15,7 @@ export default class RandomPlanet extends React.Component {
 
   componentDidMount() {
     this.updataPlanets()
-    setInterval(this.updataPlanets, 5000)
+    this.interval = setInterval(this.updataPlanets, 10000)
   }
 
   componentWillUnmount() {

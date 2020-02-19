@@ -26,11 +26,11 @@ class App extends React.Component {
   render() {
     const { showrandomPlanet, personId } = this.state
 
-    const randomPlanets = showrandomPlanet ? <RandomPlanet /> : null
+    const viewRandomPlanet = showrandomPlanet ? <RandomPlanet /> : null
     return (
       <div className="app">
         <Header />
-        {randomPlanets}
+        {viewRandomPlanet}
         <button className="app__action" onClick={this.toggleRandomPlanet}>
           Toggle Random Planet
         </button>
