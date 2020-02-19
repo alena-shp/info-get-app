@@ -8,7 +8,7 @@ import PersonDetails from "../personDetails/personDetails"
 class App extends React.Component {
   state = {
     showrandomPlanet: true,
-    numSelect: 5
+    personId: 5
   }
 
   toggleRandomPlanet = () => {
@@ -20,11 +20,11 @@ class App extends React.Component {
   }
   onItemselected = id => {
     this.setState({
-      numSelect: id
+      personId: id
     })
   }
   render() {
-    const { showrandomPlanet, numSelect } = this.state
+    const { showrandomPlanet, personId } = this.state
 
     const randomPlanets = showrandomPlanet ? <RandomPlanet /> : null
     return (
@@ -36,7 +36,7 @@ class App extends React.Component {
         </button>
         <div className="app__description">
           <ItemList onItemselected={this.onItemselected} />
-          <PersonDetails numSelect={numSelect} />
+          <PersonDetails personId={personId} />
         </div>
       </div>
     )

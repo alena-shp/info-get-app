@@ -60,6 +60,8 @@ export default class swapiService {
       id: this.getIdItem(person),
       name: person.name,
       gender: person.gender,
+      birthYear: person.birth_year,
+      eyeColor: person.eye_color,
       hairColor: person.hair_color,
       height: person.height,
       mass: person.mass,

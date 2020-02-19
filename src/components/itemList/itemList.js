@@ -12,7 +12,6 @@ export default class ItemList extends React.Component {
   componentDidMount() {
     this.swapiData.getAllPeople().then(peopleList => {
       this.setState({ peopleList })
-      console.log(peopleList)
     })
   }
 
