@@ -4,12 +4,19 @@ import Header from "../header/header"
 
 import RandomPlanet from "../randomPlanet/randomPlanet"
 import PersonPage from "../personPage/personPage"
+import ErrorIndicator from "../errorIndicator"
 
 class App extends React.Component {
   state = {
-    showrandomPlanet: true
+    showrandomPlanet: true,
+    errorHas: false
   }
 
+  componentDidCatch() {
+    this.setState({
+      errorHas: true
+    })
+  }
   toggleRandomPlanet = () => {
     this.setState(state => {
       return {
@@ -19,7 +26,11 @@ class App extends React.Component {
   }
 
   render() {
-    const { showrandomPlanet } = this.state
+    const { showrandomPlanet, errorHas } = this.state
+
+    if (errorHas) {
+      return <ErrorIndicator />
+    }
 
     const viewRandomPlanet = showrandomPlanet ? <RandomPlanet /> : null
     return (
