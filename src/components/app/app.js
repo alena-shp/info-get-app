@@ -6,19 +6,14 @@ import RandomPlanet from "../randomPlanet/randomPlanet"
 import PersonPage from "../personPage/personPage"
 import ErrorIndicator from "../errorIndicator"
 import swapiService from "../../services/swapiService"
+import ErrorBoundary from "../errorBoundary/errorBoundary"
 
 class App extends React.Component {
   swapiData = new swapiService()
   state = {
-    showrandomPlanet: true,
-    errorHas: false
+    showrandomPlanet: true
   }
 
-  componentDidCatch() {
-    this.setState({
-      errorHas: true
-    })
-  }
   toggleRandomPlanet = () => {
     this.setState(state => {
       return {
@@ -28,22 +23,20 @@ class App extends React.Component {
   }
 
   render() {
-    const { showrandomPlanet, errorHas } = this.state
-
-    if (errorHas) {
-      return <ErrorIndicator />
-    }
+    const { showrandomPlanet } = this.state
 
     const viewRandomPlanet = showrandomPlanet ? <RandomPlanet /> : null
     return (
-      <div className="app">
-        <Header />
-        {viewRandomPlanet}
-        <button className="app__action" onClick={this.toggleRandomPlanet}>
-          Toggle Random Planet
-        </button>
-        <PersonPage />
-      </div>
+      <ErrorBoundary>
+        <div className="app">
+          <Header />
+          {viewRandomPlanet}
+          <button className="app__action" onClick={this.toggleRandomPlanet}>
+            Toggle Random Planet
+          </button>
+          <PersonPage />
+        </div>
+      </ErrorBoundary>
     )
   }
 }

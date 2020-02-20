@@ -4,6 +4,7 @@ import ItemList from "../itemList"
 import PersonDetails from "../personDetails/personDetails"
 import swapiService from "../../services/swapiService"
 import Row from "../app/row/row"
+import ErrorBoundary from "../errorBoundary/errorBoundary"
 
 export default class PersonPage extends React.Component {
   swapiData = new swapiService()
@@ -23,13 +24,18 @@ export default class PersonPage extends React.Component {
     const itemList = (
       <ItemList
         onItemselected={this.onItemselected}
-        getData={this.swapiData.getAllPeople}>
+        getData={this.swapiData.getAllPeople}
+      >
         {e => `${e.name} (${e.birthYear})`}
-        </ItemList>
+      </ItemList>
     )
 
     const personDetails = <PersonDetails personId={personId} />
 
-    return <Row left={itemList} right={personDetails} />
+    return (
+      <ErrorBoundary>
+        <Row left={itemList} right={personDetails} />
+      </ErrorBoundary>
+    )
   }
 }
