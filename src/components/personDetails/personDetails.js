@@ -7,7 +7,7 @@ export default class PersonDetails extends React.Component {
   swapiData = new swapiService()
 
   state = {
-    person: {},
+    person: "",
     loading: true
   }
 
@@ -36,6 +36,9 @@ export default class PersonDetails extends React.Component {
 
   render() {
     const { person, loading } = this.state
+    if (person === "") {
+      return <span>Select a person from a list</span>
+    }
 
     const spinner = loading ? <Spinner /> : null
     const content = !loading ? <ViewPerson person={person} /> : null

@@ -5,9 +5,9 @@ import PersonDetails from "../personDetails/personDetails"
 import swapiService from "../../services/swapiService"
 
 export default class PersonPage extends React.Component {
-  swapiData = new swapiService ()
+  swapiData = new swapiService()
   state = {
-    personId: 5
+    personId: ""
   }
 
   onItemselected = id => {
@@ -20,8 +20,11 @@ export default class PersonPage extends React.Component {
     const { personId } = this.state
     return (
       <div className="person-page">
-        <ItemList onItemselected={this.onItemselected} 
-        getData={this.swapiData.getAllPeople}/>
+        <ItemList
+          onItemselected={this.onItemselected}
+          getData={this.swapiData.getAllPeople}
+          renderLabel={elem => (`${elem.name} ${elem.mass} ${elem.gender}`)}
+        />
         <PersonDetails personId={personId} />
       </div>
     )

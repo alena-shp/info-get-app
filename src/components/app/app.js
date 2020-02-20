@@ -10,8 +10,7 @@ import ItemList from "../itemList"
 import PersonDetails from "../personDetails/personDetails"
 
 class App extends React.Component {
-
-  swapiData = new swapiService ()
+  swapiData = new swapiService()
   state = {
     showrandomPlanet: true,
     errorHas: false
@@ -48,18 +47,22 @@ class App extends React.Component {
         <PersonPage />
 
         <div className="person-page">
-        <ItemList onItemselected={this.onItemselected} 
-        getData={this.swapiData.getAllPlanets}/>
-      </div>
+          <ItemList
+            onItemselected={this.onItemselected}
+            getData={this.swapiData.getAllPlanets}
+            renderLabel={elem => `${elem.name} ${elem.diameter} ${elem.population}`}
+          />
+          <PersonDetails personId={this.state.personId} />
+        </div>
 
-      <div className="person-page">
-        <ItemList onItemselected={this.onItemselected} 
-        getData={this.swapiData.getAllStarships}/>
-      </div>
-
-
-
-        
+        <div className="person-page">
+          <ItemList
+            onItemselected={this.onItemselected}
+            getData={this.swapiData.getAllStarships}
+            renderLabel={elem => `${elem.name} ${elem.model} ${elem.crew}`}
+          />
+          <PersonDetails personId={this.state.personId} />
+        </div>
       </div>
     )
   }
