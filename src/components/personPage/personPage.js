@@ -20,12 +20,16 @@ export default class PersonPage extends React.Component {
     const { personId } = this.state
     return (
       <div className="person-page">
-        <ItemList
-          onItemselected={this.onItemselected}
-          getData={this.swapiData.getAllPeople}
-          renderLabel={elem => (`${elem.name} ${elem.mass} ${elem.gender}`)}
-        />
-        <PersonDetails personId={personId} />
+        <div className="person-page__items">
+          <ItemList
+            onItemselected={this.onItemselected}
+            getData={this.swapiData.getAllPeople}
+            renderLabel={elem => `${elem.name} ${elem.mass} ${elem.gender}`}
+          />
+        </div>
+        <div className="person-page__details">
+          <PersonDetails personId={personId} />
+        </div>
       </div>
     )
   }

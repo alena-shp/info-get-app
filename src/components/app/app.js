@@ -8,6 +8,7 @@ import ErrorIndicator from "../errorIndicator"
 import swapiService from "../../services/swapiService"
 import ItemList from "../itemList"
 import PersonDetails from "../personDetails/personDetails"
+import Row from "./row/row"
 
 class App extends React.Component {
   swapiData = new swapiService()
@@ -36,6 +37,16 @@ class App extends React.Component {
       return <ErrorIndicator />
     }
 
+    const itemList = (
+      <ItemList
+        onItemselected={this.onItemselected}
+        getData={this.swapiData.getAllPlanets}
+        renderLabel={elem => `${elem.name} ${elem.diameter} ${elem.population}`}
+      />
+    )
+
+    const personDetails = <PersonDetails personId={this.state.personId} />
+
     const viewRandomPlanet = showrandomPlanet ? <RandomPlanet /> : null
     return (
       <div className="app">
@@ -46,23 +57,7 @@ class App extends React.Component {
         </button>
         <PersonPage />
 
-        <div className="person-page">
-          <ItemList
-            onItemselected={this.onItemselected}
-            getData={this.swapiData.getAllPlanets}
-            renderLabel={elem => `${elem.name} ${elem.diameter} ${elem.population}`}
-          />
-          <PersonDetails personId={this.state.personId} />
-        </div>
-
-        <div className="person-page">
-          <ItemList
-            onItemselected={this.onItemselected}
-            getData={this.swapiData.getAllStarships}
-            renderLabel={elem => `${elem.name} ${elem.model} ${elem.crew}`}
-          />
-          <PersonDetails personId={this.state.personId} />
-        </div>
+        <Row left={itemList} right={personDetails} />
       </div>
     )
   }
