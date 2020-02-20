@@ -19,7 +19,7 @@ export default class ItemList extends React.Component {
   renderItems(arr) {
     return arr.map(elem => {
       const { id } = elem
-      const label = this.props.renderLabel ? this.props.renderLabel(elem) : ""
+      const label = this.props.children ? this.props.children(elem) : ""
       return (
         <li
           key={id}

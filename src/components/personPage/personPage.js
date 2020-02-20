@@ -23,9 +23,9 @@ export default class PersonPage extends React.Component {
     const itemList = (
       <ItemList
         onItemselected={this.onItemselected}
-        getData={this.swapiData.getAllPeople}
-        renderLabel={elem => `${elem.name} (${elem.birthYear})`}
-      />
+        getData={this.swapiData.getAllPeople}>
+        {e => `${e.name} (${e.birthYear})`}
+        </ItemList>
     )
 
     const personDetails = <PersonDetails personId={personId} />

@@ -42,7 +42,7 @@ class App extends React.Component {
         <button className="app__action" onClick={this.toggleRandomPlanet}>
           Toggle Random Planet
         </button>
-        <PersonPage />{" "}
+        <PersonPage />
       </div>
     )
   }
