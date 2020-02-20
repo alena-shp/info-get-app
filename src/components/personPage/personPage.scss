@@ -3,12 +3,14 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
-  &__items,
+
+  &__items {
+    flex-basis: 50%;
+    margin-right: 30px;
+    height: 400px;
+  }
   &__details {
     flex-basis: 50%;
     height: 400px;
-  }
-  &__items {
-    margin-right: 30px;
   }
 }

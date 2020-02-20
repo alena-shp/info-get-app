@@ -6,9 +6,6 @@ import RandomPlanet from "../randomPlanet/randomPlanet"
 import PersonPage from "../personPage/personPage"
 import ErrorIndicator from "../errorIndicator"
 import swapiService from "../../services/swapiService"
-import ItemList from "../itemList"
-import PersonDetails from "../personDetails/personDetails"
-import Row from "./row/row"
 
 class App extends React.Component {
   swapiData = new swapiService()
@@ -37,16 +34,6 @@ class App extends React.Component {
       return <ErrorIndicator />
     }
 
-    const itemList = (
-      <ItemList
-        onItemselected={this.onItemselected}
-        getData={this.swapiData.getAllPlanets}
-        renderLabel={elem => `${elem.name} ${elem.diameter} ${elem.population}`}
-      />
-    )
-
-    const personDetails = <PersonDetails personId={this.state.personId} />
-
     const viewRandomPlanet = showrandomPlanet ? <RandomPlanet /> : null
     return (
       <div className="app">
@@ -55,9 +42,7 @@ class App extends React.Component {
         <button className="app__action" onClick={this.toggleRandomPlanet}>
           Toggle Random Planet
         </button>
-        <PersonPage />
-
-        <Row left={itemList} right={personDetails} />
+        <PersonPage />{" "}
       </div>
     )
   }
