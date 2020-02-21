@@ -6,6 +6,8 @@ import RandomPlanet from "../randomPlanet/randomPlanet"
 import PersonPage from "../personPage/personPage"
 import swapiService from "../../services/swapiService"
 import ErrorBoundary from "../errorBoundary/errorBoundary"
+import Row from "../row/row"
+import ItemDetails from "../itemDetails/itemDetails"
 
 class App extends React.Component {
   swapiData = new swapiService()
@@ -24,6 +26,28 @@ class App extends React.Component {
   render() {
     const { showrandomPlanet } = this.state
 
+    const {
+      getPerson,
+      getStarship,
+      getImagePeople,
+      getImageStarship
+    } = this.swapiData
+
+    const itemPeople = (
+      <ItemDetails
+        itemId="5"
+        getDetails={getPerson}
+        getImageUrl={getImagePeople}
+      />
+    )
+    const itemStarship = (
+      <ItemDetails
+        itemId="10"
+        getDetails={getStarship}
+        getImageUrl={getImageStarship}
+      />
+    )
+
     const viewRandomPlanet = showrandomPlanet ? <RandomPlanet /> : null
     return (
       <ErrorBoundary>
@@ -34,6 +58,7 @@ class App extends React.Component {
             Toggle Random Planet
           </button>
           <PersonPage />
+          <Row left={itemPeople} right={itemStarship} />
         </div>
       </ErrorBoundary>
     )

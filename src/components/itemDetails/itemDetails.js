@@ -8,7 +8,8 @@ export default class ItemDetails extends React.Component {
 
   state = {
     item: "",
-    loading: true
+    loading: true,
+    image: ""
   }
 
   componentDidMount() {
@@ -23,24 +24,24 @@ export default class ItemDetails extends React.Component {
   }
 
   updataItem() {
-    const { itemId, getDetails } = this.props
+    const { itemId, getDetails, getImageUrl } = this.props
 
     if (!itemId) {
       return
     }
     getDetails(itemId).then(item => {
-      this.setState({ item, loading: false })
+      this.setState({ item, loading: false, image: getImageUrl(item) })
     })
   }
 
   render() {
-    const { item, loading } = this.state
+    const { item, loading, image } = this.state
     if (item === "") {
       return <span>Select a person from a list</span>
     }
 
     const spinner = loading ? <Spinner /> : null
-    const content = !loading ? <ViewItem item={item} /> : null
+    const content = !loading ? <ViewItem item={item} image={image} /> : null
 
     return (
       <div className="personDetails">
@@ -51,7 +52,7 @@ export default class ItemDetails extends React.Component {
   }
 }
 
-const ViewItem = ({ item }) => {
+const ViewItem = ({ item, image }) => {
   const {
     id,
     name,
@@ -65,11 +66,7 @@ const ViewItem = ({ item }) => {
   } = item
   return (
     <>
-      <img
-        className="personDetails__img"
-        src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
-        alt=""
-      />
+      <img className="personDetails__img" src={image} alt="" />
       <div className="personDetails__card card">
         <h3 className="card__name">{name}</h3>
         <ul className="card__description">
