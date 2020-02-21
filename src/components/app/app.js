@@ -4,7 +4,6 @@ import Header from "../header/header"
 
 import RandomPlanet from "../randomPlanet/randomPlanet"
 import PersonPage from "../personPage/personPage"
-import ErrorIndicator from "../errorIndicator"
 import swapiService from "../../services/swapiService"
 import ErrorBoundary from "../errorBoundary/errorBoundary"
 

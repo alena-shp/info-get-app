@@ -1,47 +1,46 @@
 import React from "react"
-import "./personDetails.scss"
+import "./itemDetails.scss"
 import swapiService from "../../services/swapiService"
 import Spinner from "../spinner"
 
-export default class PersonDetails extends React.Component {
+export default class ItemDetails extends React.Component {
   swapiData = new swapiService()
 
   state = {
-    person: "",
+    item: "",
     loading: true
   }
 
   componentDidMount() {
-    this.updataPerson()
+    this.updataItem()
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.personId !== prevProps.personId) {
-      this.updataPerson()
+    if (this.props.itemId !== prevProps.itemId) {
+      this.updataItem()
       this.setState({ loading: true })
     }
   }
 
-  updataPerson() {
-    const { personId } = this.props
+  updataItem() {
+    const { itemId, getDetails } = this.props
 
-    if (!personId) {
+    if (!itemId) {
       return
     }
-
-    this.swapiData.getPerson(personId).then(person => {
-      this.setState({ person, loading: false })
+    getDetails(itemId).then(item => {
+      this.setState({ item, loading: false })
     })
   }
 
   render() {
-    const { person, loading } = this.state
-    if (person === "") {
+    const { item, loading } = this.state
+    if (item === "") {
       return <span>Select a person from a list</span>
     }
 
     const spinner = loading ? <Spinner /> : null
-    const content = !loading ? <ViewPerson person={person} /> : null
+    const content = !loading ? <ViewItem item={item} /> : null
 
     return (
       <div className="personDetails">
@@ -52,7 +51,7 @@ export default class PersonDetails extends React.Component {
   }
 }
 
-const ViewPerson = ({ person }) => {
+const ViewItem = ({ item }) => {
   const {
     id,
     name,
@@ -63,7 +62,7 @@ const ViewPerson = ({ person }) => {
     height,
     mass,
     skinColor
-  } = person
+  } = item
   return (
     <>
       <img

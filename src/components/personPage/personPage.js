@@ -1,25 +1,25 @@
 import React from "react"
 import "./personPage.scss"
 import ItemList from "../itemList"
-import PersonDetails from "../personDetails/personDetails"
+import ItemDetails from "../itemDetails/itemDetails"
 import swapiService from "../../services/swapiService"
-import Row from "../app/row/row"
+import Row from "./../row/row"
 import ErrorBoundary from "../errorBoundary/errorBoundary"
 
 export default class PersonPage extends React.Component {
   swapiData = new swapiService()
   state = {
-    personId: ""
+    itemId: ""
   }
 
   onItemselected = id => {
     this.setState({
-      personId: id
+      itemId: id
     })
   }
 
   render() {
-    const { personId } = this.state
+    const { itemId } = this.state
 
     const itemList = (
       <ItemList
@@ -30,11 +30,12 @@ export default class PersonPage extends React.Component {
       </ItemList>
     )
 
-    const personDetails = <PersonDetails personId={personId} />
+    const itemDetails = <ItemDetails itemId={itemId} 
+    getDetails={this.swapiData.getPerson} />
 
     return (
       <ErrorBoundary>
-        <Row left={itemList} right={personDetails} />
+        <Row left={itemList} right={itemDetails} />
       </ErrorBoundary>
     )
   }
