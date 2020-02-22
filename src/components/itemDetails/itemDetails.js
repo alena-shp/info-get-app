@@ -36,12 +36,62 @@ export default class ItemDetails extends React.Component {
 
   render() {
     const { item, loading, image } = this.state
+
+    const {
+      name,
+      gender,
+      birthYear,
+      eyeColor,
+      hairColor,
+      height,
+      mass,
+      skinColor
+    } = item
+
     if (item === "") {
       return <span>Select a person from a list</span>
     }
 
+    const viewItem = (
+      <>
+        <img className="personDetails__img" src={image} alt="" />
+        <div className="personDetails__card card">
+          <h3 className="card__name">{name}</h3>
+          <ul className="card__description">
+            <li className="card__description-item">
+              <span>Gender</span>
+              <span>{gender}</span>
+            </li>
+            <li className="card__description-item">
+              <span>Birth Yea</span>
+              <span>{birthYear}</span>
+            </li>
+            <li className="card__description-item">
+              <span>Eye Color</span>
+              <span>{eyeColor}</span>
+            </li>
+            <li className="card__description-item">
+              <span>Hair Color</span>
+              <span>{hairColor}</span>
+            </li>
+            <li className="card__description-item">
+              <span>Height</span>
+              <span>{height}</span>
+            </li>
+            <li className="card__description-item">
+              <span>Mass</span>
+              <span>{mass}</span>
+            </li>
+            <li className="card__description-item">
+              <span>Skin Color</span>
+              <span>{skinColor}</span>
+            </li>
+          </ul>
+        </div>
+      </>
+    )
     const spinner = loading ? <Spinner /> : null
-    const content = !loading ? <ViewItem item={item} image={image} /> : null
+    const content = !loading ? viewItem : null
 
     return (
       <div className="personDetails">
@@ -50,56 +100,4 @@ export default class ItemDetails extends React.Component {
       </div>
     )
   }
-}
-
-const ViewItem = ({ item, image }) => {
-  const {
-    id,
-    name,
-    gender,
-    birthYear,
-    eyeColor,
-    hairColor,
-    height,
-    mass,
-    skinColor
-  } = item
-  return (
-    <>
-      <img className="personDetails__img" src={image} alt="" />
-      <div className="personDetails__card card">
-        <h3 className="card__name">{name}</h3>
-        <ul className="card__description">
-          <li className="card__description-item">
-            <span>Gender</span>
-            <span>{gender}</span>
-          </li>
-          <li className="card__description-item">
-            <span>Birth Yea</span>
-            <span>{birthYear}</span>
-          </li>
-          <li className="card__description-item">
-            <span>Eye Color</span>
-            <span>{eyeColor}</span>
-          </li>
-          <li className="card__description-item">
-            <span>Hair Color</span>
-            <span>{hairColor}</span>
-          </li>
-          <li className="card__description-item">
-            <span>Height</span>
-            <span>{height}</span>
-          </li>
-          <li className="card__description-item">
-            <span>Mass</span>
-            <span>{mass}</span>
-          </li>
-          <li className="card__description-item">
-            <span>Skin Color</span>
-            <span>{skinColor}</span>
-          </li>
-        </ul>
-      </div>
-    </>
-  )
 }

@@ -31,7 +31,7 @@ export default class PersonPage extends React.Component {
     )
 
     const itemDetails = <ItemDetails itemId={itemId} 
-    getDetails={this.swapiData.getPerson} />
+    getDetails={this.swapiData.getPerson} getImageUrl={this.swapiData.getImagePeople}/>
 
     return (
       <ErrorBoundary>
