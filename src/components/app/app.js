@@ -7,7 +7,7 @@ import PersonPage from "../personPage/personPage"
 import swapiService from "../../services/swapiService"
 import ErrorBoundary from "../errorBoundary/errorBoundary"
 import Row from "../row/row"
-import ItemDetails from "../itemDetails/itemDetails"
+import ItemDetails, { Record } from "../itemDetails/itemDetails"
 
 class App extends React.Component {
   swapiData = new swapiService()
@@ -38,7 +38,16 @@ class App extends React.Component {
         itemId="5"
         getDetails={getPerson}
         getImageUrl={getImagePeople}
-      />
+      >
+        
+        <Record field="gender" label="Gender" />
+        <Record field="birthYear" label="Birth Year" />
+        <Record field="eyeColor" label="Eye Color" />
+        <Record field="hairColor" label="Hair Color" />
+        <Record field="height" label="Height" />
+        <Record field="mass" label="Mass" />
+        <Record field="skinColor" label="Skin Color" />
+      </ItemDetails>
     )
     const itemStarship = (
       <ItemDetails
