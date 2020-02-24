@@ -8,6 +8,7 @@ import swapiService from "../../services/swapiService"
 import ErrorBoundary from "../errorBoundary/errorBoundary"
 import Row from "../row/row"
 import ItemDetails, { Record } from "../itemDetails/itemDetails"
+import ItemList from "../itemList"
 
 class App extends React.Component {
   swapiData = new swapiService()
@@ -27,19 +28,31 @@ class App extends React.Component {
     const { showrandomPlanet } = this.state
 
     const {
+      getAllPeople,
+      getAllStarships,
       getPerson,
       getStarship,
       getImagePeople,
       getImageStarship
     } = this.swapiData
 
-    const itemPeople = (
+    const itemListPeople = (
+      <ItemList getData={getAllPeople} onItemselected={() => {}}>
+        {e => `${e.name}`}
+      </ItemList>
+    )
+
+    const itemListStarships = (
+      <ItemList getData={getAllStarships} onItemselected={() => {}}>
+        {e => `${e.name}`}
+      </ItemList>
+    )
+    const itemDetailsPeople = (
       <ItemDetails
         itemId="5"
         getDetails={getPerson}
         getImageUrl={getImagePeople}
       >
-        
         <Record field="gender" label="Gender" />
         <Record field="birthYear" label="Birth Year" />
         <Record field="eyeColor" label="Eye Color" />
@@ -49,9 +62,9 @@ class App extends React.Component {
         <Record field="skinColor" label="Skin Color" />
       </ItemDetails>
     )
-    const itemStarship = (
+    const itemDetailsStarship = (
       <ItemDetails
-        itemId="10"
+        itemId="9"
         getDetails={getStarship}
         getImageUrl={getImageStarship}
       >
@@ -60,7 +73,6 @@ class App extends React.Component {
         <Record field="costInCredits" label="Cost in Credits" />
         <Record field="length" label="Length" />
         <Record field="crew" label="Crew" />
-
       </ItemDetails>
     )
 
@@ -73,8 +85,8 @@ class App extends React.Component {
           <button className="app__action" onClick={this.toggleRandomPlanet}>
             Toggle Random Planet
           </button>
-          <PersonPage />
-          <Row left={itemPeople} right={itemStarship} />
+          <Row left={itemListPeople} right={itemDetailsPeople} />
+          <Row left={itemListStarships} right={itemDetailsStarship} />
         </div>
       </ErrorBoundary>
     )
