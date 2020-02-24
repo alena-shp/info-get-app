@@ -3,16 +3,6 @@ import "./itemDetails.scss"
 import swapiService from "../../services/swapiService"
 import Spinner from "../spinner"
 
-const Record = ({ item, field, label }) => {
-  return (
-    <li className="card__description-item">
-      <span>{label}</span>
-      <span>{item[field]}</span>
-    </li>
-  )
-}
-export { Record }
-
 export default class ItemDetails extends React.Component {
   swapiData = new swapiService()
 

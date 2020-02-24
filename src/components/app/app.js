@@ -3,12 +3,12 @@ import "./app.scss"
 import Header from "../header/header"
 
 import RandomPlanet from "../randomPlanet/randomPlanet"
-import PersonPage from "../personPage/personPage"
 import swapiService from "../../services/swapiService"
 import ErrorBoundary from "../errorBoundary/errorBoundary"
 import Row from "../row/row"
-import ItemDetails, { Record } from "../itemDetails/itemDetails"
+import ItemDetails from "../itemDetails/itemDetails"
 import ItemList from "../itemList"
+import Record from "../record/record"
 
 class App extends React.Component {
   swapiData = new swapiService()
