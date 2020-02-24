@@ -54,7 +54,14 @@ class App extends React.Component {
         itemId="10"
         getDetails={getStarship}
         getImageUrl={getImageStarship}
-      />
+      >
+        <Record field="model" label="Model" />
+        <Record field="manufacturer" label="Manufacturer" />
+        <Record field="costInCredits" label="Cost in Credits" />
+        <Record field="length" label="Length" />
+        <Record field="crew" label="Crew" />
+
+      </ItemDetails>
     )
 
     const viewRandomPlanet = showrandomPlanet ? <RandomPlanet /> : null
