@@ -1,7 +1,7 @@
 import React from "react"
 import "./itemList.scss"
 import swapiService from "../../services/swapiService"
-import Spinner from "../spinner"
+import WithData from "../hocComponent/withData"
 
 const ItemList = props => {
   const { data, onItemselected, children: renderlabel } = props
@@ -23,28 +23,6 @@ const ItemList = props => {
   return <ul className="itemList">{items}</ul>
 }
 
-const withData = View => {
-  return class extends React.Component {
-    swapiData = new swapiService()
-    state = {
-      data: null
-    }
+const { getAllPeople } = new swapiService()
 
-    componentDidMount() {
-      const { getData } = this.props
-      getData().then(data => {
-        this.setState({ data })
-      })
-    }
-    render() {
-      const { data } = this.state
-
-      if (!data) {
-        return <Spinner />
-      }
-      return <ItemList {...this.props} data={this.state.data} />
-    }
-  }
-}
-
-export default withData(ItemList)
+export default WithData(ItemList, getAllPeople)
