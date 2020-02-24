@@ -3,44 +3,48 @@ import "./itemList.scss"
 import swapiService from "../../services/swapiService"
 import Spinner from "../spinner"
 
-export default class ItemList extends React.Component {
-  swapiData = new swapiService()
-  state = {
-    itemList: null
-  }
+const ItemList = props => {
+  const { data, onItemselected, children: renderlabel } = props
 
-  componentDidMount() {
-    const { getData } = this.props
-    getData().then(itemList => {
-      this.setState({ itemList })
-    })
-  }
+  const items = data.map(item => {
+    const { id } = item
+    const label = renderlabel ? renderlabel(item) : ""
+    return (
+      <li
+        key={id}
+        className="itemList__item"
+        onClick={() => onItemselected(id)}
+      >
+        <a href="#0">{label}</a>
+      </li>
+    )
+  })
 
-  renderItems(arr) {
-    return arr.map(elem => {
-      const { id } = elem
-      const label = this.props.children ? this.props.children(elem) : ""
-      return (
-        <li
-          key={id}
-          className="itemList__item"
-          onClick={() => this.props.onItemselected(id)}
-        >
-          <a href="#0">{label}</a>
-        </li>
-      )
-    })
-  }
+  return <ul className="itemList">{items}</ul>
+}
 
-  render() {
-    const { itemList } = this.state
-
-    if (!itemList) {
-      return <Spinner />
+const withData = View => {
+  return class extends React.Component {
+    swapiData = new swapiService()
+    state = {
+      data: null
     }
 
-    const items = this.renderItems(itemList)
+    componentDidMount() {
+      const { getData } = this.props
+      getData().then(data => {
+        this.setState({ data })
+      })
+    }
+    render() {
+      const { data } = this.state
 
-    return <ul className="itemList">{items}</ul>
+      if (!data) {
+        return <Spinner />
+      }
+      return <ItemList {...this.props} data={this.state.data} />
+    }
   }
 }
+
+export default withData(ItemList)
