@@ -39,11 +39,11 @@ class App extends React.Component {
             Toggle Random Planet
           </button>
           <Row
-            left={<PeopleItemList>{e => `${e.name}`}</PeopleItemList>}
+            left={<PeopleItemList/>}
             right={<PersonDetails itemId="6" />}
           />
           <Row
-            left={<PlanetsItemList>{e => `${e.name}`}</PlanetsItemList>}
+            left={<PlanetsItemList />}
             right={<PlanetDetails itemId="4" />}
           />
         </div>
