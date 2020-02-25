@@ -2,6 +2,16 @@ import React from "react"
 import "./itemDetails.scss"
 import Spinner from "../spinner"
 
+// const Record = ({ item, field, label }) => {
+//   return (
+//     <li className="card__description-item">
+//       <span>{label}</span>
+//       <span>{item[field]}</span>
+//     </li>
+//   )
+// }
+// export { Record }
+
 const ItemDetails = props => {
   const { item, loading, image } = props
 

@@ -5,16 +5,16 @@ import {
 } from "./wrapperList"
 
 import {
-  PeopleDetails,
-  PlanetsDetails,
-  StarshipsDetails
+  PersonDetails,
+  PlanetDetails,
+  StarshipDetails
 } from "./wrapperDetails"
 
 export {
   PeopleItemList,
   PlanetsItemList,
   StarshipsItemList,
-  PeopleDetails,
-  PlanetsDetails,
-  StarshipsDetails
+  PersonDetails,
+  PlanetDetails,
+  StarshipDetails
 }
