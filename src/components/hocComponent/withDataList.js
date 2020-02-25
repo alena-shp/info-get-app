@@ -1,13 +1,14 @@
 import React from "react"
 import Spinner from "../spinner"
 
-const WithData = (View, getData) => {
+const WithDataList = View => {
   return class extends React.Component {
     state = {
       data: null
     }
 
     componentDidMount() {
+      const { getData } = this.props
       getData().then(data => {
         this.setState({ data })
       })
@@ -23,4 +24,4 @@ const WithData = (View, getData) => {
   }
 }
 
-export default WithData
+export default WithDataList
