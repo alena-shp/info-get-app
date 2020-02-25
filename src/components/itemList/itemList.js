@@ -1,6 +1,5 @@
 import React from "react"
 import "./itemList.scss"
-import WithDataList from "../hocComponent/withDataList"
 
 const ItemList = props => {
   const { data, onItemselected, children: renderlabel } = props
@@ -22,5 +21,4 @@ const ItemList = props => {
   return <ul className="itemList">{items}</ul>
 }
 
-
-export default WithDataList(ItemList)
+export default ItemList
