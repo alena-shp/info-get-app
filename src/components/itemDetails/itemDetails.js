@@ -1,7 +1,6 @@
 import React from "react"
 import "./itemDetails.scss"
 import Spinner from "../spinner"
-import WithDataDetails from "../hocComponent/withDataDetails"
 
 const ItemDetails = props => {
   const { item, loading, image } = props
@@ -31,4 +30,4 @@ const ItemDetails = props => {
   )
 }
 
-export default WithDataDetails(ItemDetails)
+export default ItemDetails

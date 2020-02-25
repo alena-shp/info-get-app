@@ -42,39 +42,27 @@ class App extends React.Component {
       </ItemList>
     )
 
-    const itemListStarships = (
-      <ItemList getData={getAllStarships} onItemselected={() => {}}>
-        {e => `${e.name}`}
-      </ItemList>
-    )
-    const itemDetailsPeople = (
-      <ItemDetails
-        itemId="5"
-        getDetails={getPerson}
-        getImageUrl={getImagePeople}
-      >
-        <Record field="gender" label="Gender" />
-        <Record field="birthYear" label="Birth Year" />
-        <Record field="eyeColor" label="Eye Color" />
-        <Record field="hairColor" label="Hair Color" />
-        <Record field="height" label="Height" />
-        <Record field="mass" label="Mass" />
-        <Record field="skinColor" label="Skin Color" />
-      </ItemDetails>
-    )
-    const itemDetailsStarship = (
-      <ItemDetails
-        itemId="9"
-        getDetails={getStarship}
-        getImageUrl={getImageStarship}
-      >
-        <Record field="model" label="Model" />
-        <Record field="manufacturer" label="Manufacturer" />
-        <Record field="costInCredits" label="Cost in Credits" />
-        <Record field="length" label="Length" />
-        <Record field="crew" label="Crew" />
-      </ItemDetails>
-    )
+    // const itemListStarships = (
+    //   <ItemList getData={getAllStarships} onItemselected={() => {}}>
+    //     {e => `${e.name}`}
+    //   </ItemList>
+    // )
+    // const itemDetailsPeople = (
+    //   <ItemDetails
+    //     itemId="5"
+    //     getDetails={getPerson}
+    //     getImageUrl={getImagePeople}
+    //   >
+    //     <Record field="gender" label="Gender" />
+    //     <Record field="birthYear" label="Birth Year" />
+    //     <Record field="eyeColor" label="Eye Color" />
+    //     <Record field="hairColor" label="Hair Color" />
+    //     <Record field="height" label="Height" />
+    //     <Record field="mass" label="Mass" />
+    //     <Record field="skinColor" label="Skin Color" />
+    //   </ItemDetails>
+    // )
+    
 
     const viewRandomPlanet = showrandomPlanet ? <RandomPlanet /> : null
     return (
@@ -85,8 +73,6 @@ class App extends React.Component {
           <button className="app__action" onClick={this.toggleRandomPlanet}>
             Toggle Random Planet
           </button>
-          <Row left={itemListPeople} right={itemDetailsPeople} />
-          <Row left={itemListStarships} right={itemDetailsStarship} />
         </div>
       </ErrorBoundary>
     )

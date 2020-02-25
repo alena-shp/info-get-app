@@ -40,7 +40,7 @@ export default class swapiService {
     return this._transformPlanets(planet)
   }
 
-  getImagePeople = ({ id }) => {
+  getImagePerson = ({ id }) => {
     return `https://starwars-visualguide.com/assets/img/characters/${id}.jpg`
   }
   getImageStarship = ({ id }) => {
