@@ -38,11 +38,14 @@ class App extends React.Component {
           <button className="app__action" onClick={this.toggleRandomPlanet}>
             Toggle Random Planet
           </button>
-
-          <PeopleItemList>{e => `${e.name}`}</PeopleItemList>
-          <PlanetsItemList>{e => `${e.name}`}</PlanetsItemList>
-          <PersonDetails itemId="6" />
-          <PlanetDetails itemId="4" />
+          <Row
+            left={<PeopleItemList>{e => `${e.name}`}</PeopleItemList>}
+            right={<PersonDetails itemId="6" />}
+          />
+          <Row
+            left={<PlanetsItemList>{e => `${e.name}`}</PlanetsItemList>}
+            right={<PlanetDetails itemId="4" />}
+          />
         </div>
       </ErrorBoundary>
     )
