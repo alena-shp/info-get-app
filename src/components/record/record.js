@@ -1,5 +1,5 @@
 import React from "react"
-import "./../personPage/personPage.scss"
+import "./../row/row.scss"
 
 const Record = ({ item, field, label }) => {
   return (

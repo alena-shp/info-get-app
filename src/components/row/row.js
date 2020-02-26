@@ -1,10 +1,11 @@
 import React from "react"
+import "./row.scss"
 
 const Row = ({ left, right }) => {
   return (
-    <div className="person-page">
-      <div className="person-page__items">{left}</div>
-      <div className="person-page__details">{right}</div>
+    <div className="row">
+      <div className="row__items">{left}</div>
+      <div className="row__details">{right}</div>
     </div>
   )
 }

@@ -31,7 +31,7 @@ export default class RandomPlanet extends React.Component {
   }
 
   updataPlanets = () => {
-    const id = Math.floor(Math.random() * 18) + 1
+    const id = Math.floor(Math.random() * 17) + 2
     this.swapiData
       .getPlanet(id)
       .then(this.onPlanetLoaded)
