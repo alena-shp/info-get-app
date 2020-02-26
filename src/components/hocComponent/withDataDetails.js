@@ -1,11 +1,14 @@
 import React from "react"
+import Spinner from "../spinner"
+import ErrorIndicator from "../errorIndicator"
 
 const WithDataDetails = View => {
   return class extends React.Component {
     state = {
       item: "",
-      loading: true,
-      image: ""
+      loading: false,
+      image: "",
+      err: false
     }
 
     componentDidMount() {
@@ -25,15 +28,30 @@ const WithDataDetails = View => {
       if (!itemId) {
         return
       }
-      getDetails(itemId).then(item => {
-        this.setState({ item, loading: false, image: getImageUrl(item) })
-      })
+      this.setState({ loading: true })
+      getDetails(itemId)
+        .then(item => {
+          this.setState({ item, loading: false, image: getImageUrl(item) })
+        })
+        .catch(this.onError)
     }
+
+    onError = err => {
+      this.setState({ err: true })
+    }
+
     render() {
-      const { item, loading, image } = this.state
-      return (
-        <View {...this.props} item={item} loading={loading} image={image} />
-      )
+      const { item, loading, err, image } = this.state
+
+      if (loading) {
+        return <Spinner />
+      }
+
+      if (err) {
+        return <ErrorIndicator />
+      }
+
+      return <View {...this.props} item={item} image={image} />
     }
   }
 }

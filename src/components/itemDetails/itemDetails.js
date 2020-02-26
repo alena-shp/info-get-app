@@ -1,6 +1,5 @@
 import React from "react"
 import "./itemDetails.scss"
-import Spinner from "../spinner"
 
 // const Record = ({ item, field, label }) => {
 //   return (
@@ -13,16 +12,12 @@ import Spinner from "../spinner"
 // export { Record }
 
 const ItemDetails = props => {
-  const { item, loading, image } = props
+  const { item, image } = props
 
   const { name } = item
 
   if (item === "") {
     return <span>Select a person from a list</span>
-  }
-
-  if (loading) {
-    return <Spinner />
   }
 
   return (
