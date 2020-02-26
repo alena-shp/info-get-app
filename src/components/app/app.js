@@ -30,10 +30,10 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.swapiData)
     const { showrandomPlanet } = this.state
 
     const viewRandomPlanet = showrandomPlanet ? <RandomPlanet /> : null
+
     return (
       <ErrorBoundary>
         <SwapiProveder value={this.swapiData}>
