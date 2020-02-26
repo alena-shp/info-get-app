@@ -20,7 +20,7 @@ const WithDataList = View => {
     }
 
     onError = err => {
-      this.setState({ err: true, loading: false })
+      this.setState({ err: true, isloading: false })
     }
 
     render() {

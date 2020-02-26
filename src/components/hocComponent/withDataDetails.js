@@ -6,7 +6,7 @@ const WithDataDetails = View => {
   return class extends React.Component {
     state = {
       item: "",
-      loading: false,
+      isloading: false,
       image: "",
       err: false
     }
@@ -18,7 +18,7 @@ const WithDataDetails = View => {
     componentDidUpdate(prevProps) {
       if (this.props.itemId !== prevProps.itemId) {
         this.updataItem()
-        this.setState({ loading: true })
+        this.setState({ isloading: true })
       }
     }
 
@@ -28,10 +28,10 @@ const WithDataDetails = View => {
       if (!itemId) {
         return
       }
-      this.setState({ loading: true })
+      this.setState({ isloading: true })
       getDetails(itemId)
         .then(item => {
-          this.setState({ item, loading: false, image: getImageUrl(item) })
+          this.setState({ item, isloading: false, image: getImageUrl(item) })
         })
         .catch(this.onError)
     }
@@ -41,9 +41,9 @@ const WithDataDetails = View => {
     }
 
     render() {
-      const { item, loading, err, image } = this.state
+      const { item, isloading, err, image } = this.state
 
-      if (loading) {
+      if (isloading) {
         return <Spinner />
       }
 
