@@ -1,6 +1,6 @@
 import React from "react"
 
-const WithDataDetails = (View, getDetails, getImageUrl) => {
+const WithDataDetails = View => {
   return class extends React.Component {
     state = {
       item: "",
@@ -20,7 +20,7 @@ const WithDataDetails = (View, getDetails, getImageUrl) => {
     }
 
     updataItem() {
-      const { itemId} = this.props
+      const { itemId, getDetails, getImageUrl } = this.props
 
       if (!itemId) {
         return

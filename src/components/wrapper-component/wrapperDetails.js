@@ -1,17 +1,9 @@
 import React from "react"
-import swapiService from "../../services/swapiService"
 import ItemDetails from "../itemDetails"
 import WithDataDetails from "../hocComponent/withDataDetails"
 import Record from "../record/record"
+import WithContext from "../hocComponent/withContext"
 
-const {
-  getPerson,
-  getPlanet,
-  getStarship,
-  getImagePerson,
-  getImagePlanet,
-  getImageStarship
-} = new swapiService()
 
 const PersonDetailsChild = Wrapper => {
   return props => {
@@ -57,20 +49,39 @@ const StarshipDetailsChild = Wrapper => {
   }
 }
 
-const PersonDetails = WithDataDetails(
-  PersonDetailsChild(ItemDetails),
-  getPerson,
-  getImagePerson
+const mapMethodToPropsPerson = swapiData => {
+  return {
+    getDetails: swapiData.getPerson,
+    getImageUrl: swapiData.getImagePerson
+  }
+}
+
+const mapMethodToPropsPlanet = swapiData => {
+  return {
+    getDetails: swapiData.getPlanet,
+    getImageUrl: swapiData.getImagePlanet
+  }
+}
+
+const mapMethodToPropsStarship = swapiData => {
+  return {
+    getDetails: swapiData.getStarship,
+    getImageUrl: swapiData.getImageStarship
+  }
+}
+
+const PersonDetails = WithContext(
+  WithDataDetails(PersonDetailsChild(ItemDetails)),
+  mapMethodToPropsPerson
 )
-const PlanetDetails = WithDataDetails(
-  PlanetDetailsChild(ItemDetails),
-  getPlanet,
-  getImagePlanet
+
+const PlanetDetails = WithContext(
+  WithDataDetails(PlanetDetailsChild(ItemDetails)),
+  mapMethodToPropsPlanet
 )
-const StarshipDetails = WithDataDetails(
-  StarshipDetailsChild(ItemDetails),
-  getStarship,
-  getImageStarship
+const StarshipDetails = WithContext(
+  WithDataDetails(StarshipDetailsChild(ItemDetails)),
+  mapMethodToPropsStarship
 )
 
 export { PersonDetails, PlanetDetails, StarshipDetails }
