@@ -4,11 +4,11 @@ import {
   StarshipsItemList
 } from "./wrapperList"
 
-import {
-  PersonDetails,
-  PlanetDetails,
-  StarshipDetails
-} from "./wrapperDetails"
+import { PersonDetails } from "./wrapperPersonDetails"
+
+import { PlanetDetails } from "./wrapperPlanetDetails"
+
+import { StarshipDetails } from "./wrapperStarshipDetails"
 
 export {
   PeopleItemList,
