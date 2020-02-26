@@ -2,21 +2,21 @@ import React from "react"
 import Spinner from "../spinner"
 import ErrorIndicator from "../errorIndicator"
 
-
 const WithDataList = View => {
   return class extends React.Component {
     state = {
       data: null,
-      isLoading: true,
+      isloading: true,
       err: false
     }
 
     componentDidMount() {
       const { getData } = this.props
-      getData().then(data => {
-        this.setState({ data,  isLoading: false})
-      })
-      .catch(this.onError)
+      getData()
+        .then(data => {
+          this.setState({ data, isloading: false })
+        })
+        .catch(this.onError)
     }
 
     onError = err => {
@@ -24,9 +24,9 @@ const WithDataList = View => {
     }
 
     render() {
-      const { data, isLoading, err } = this.state
+      const { data, isloading, err } = this.state
 
-      if (isLoading) {
+      if (isloading) {
         return <Spinner />
       }
 

@@ -2,12 +2,9 @@ import React from "react"
 import WithDataList from "../hocComponent/withDataList"
 import ItemList from "../itemList"
 import WithContext from "../hocComponent/withContext"
+import { WithChild } from "../hocComponent"
 
-const WithChild = (Wrapper, fn) => {
-  return props => {
-    return <Wrapper {...props}>{fn}</Wrapper>
-  }
-}
+const renderName = ({ name }) => <span>{name}</span>
 
 const mapMethodToPropsPeople = swapiData => {
   return {
@@ -26,8 +23,6 @@ const mapMethodToPropsStarships = swapiData => {
     getData: swapiData.getAllStarships
   }
 }
-
-const renderName = ({ name }) => <span>{name}</span>
 
 const PeopleItemList = WithContext(
   WithDataList(WithChild(ItemList, renderName)),
