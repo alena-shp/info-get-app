@@ -1,16 +1,14 @@
 .row {
-  margin-top: 40px;
+  margin: 40px 0 0 0;
   display: flex;
   width: 100%;
+  align-items: flex-start;
   justify-content: space-between;
 
   &__items {
-    flex-basis: 50%;
-    margin-right: 30px;
-    height: 400px;
+    flex-basis: 40%;
   }
   &__details {
-    flex-basis: 50%;
-    height: 400px;
+    flex-basis: 55%;
   }
 }
