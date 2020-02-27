@@ -5,6 +5,10 @@ import Spinner from "../spinner"
 import ErrorIndicator from "../errorIndicator"
 
 export default class RandomPlanet extends React.Component {
+  static defaultProps = {
+    upDataUnterval: 10000
+  }
+
   swapiData = new swapiService()
 
   state = {
@@ -13,10 +17,10 @@ export default class RandomPlanet extends React.Component {
     err: false
   }
 
-
   componentDidMount() {
+    const { upDataUnterval } = this.props
     this.updataPlanets()
-    this.interval = setInterval(this.updataPlanets, 10000)
+    this.interval = setInterval(this.updataPlanets, upDataUnterval)
   }
 
   componentWillUnmount() {
