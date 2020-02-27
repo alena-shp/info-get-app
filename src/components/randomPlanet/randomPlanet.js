@@ -1,9 +1,10 @@
 import React from "react"
 import "./randomPlanet.scss"
+import PropTypes from "prop-types"
+
 import swapiService from "./../../services/swapiService"
 import Spinner from "../spinner"
 import ErrorIndicator from "../errorIndicator"
-import PropTypes from "prop-types"
 
 export default class RandomPlanet extends React.Component {
   static defaultProps = {
@@ -101,10 +102,10 @@ const PlanetView = ({ planet }) => {
 
 PlanetView.propTypes = {
   planet: PropTypes.shape({
-    id: PropTypes.string,
-    name: PropTypes.string,
-    population: PropTypes.string,
-    rotationPeriod: PropTypes.string,
-    diameter: PropTypes.string
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    population: PropTypes.string.isRequired,
+    rotationPeriod: PropTypes.string.isRequired,
+    diameter: PropTypes.string.isRequired
   })
 }

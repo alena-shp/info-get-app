@@ -1,6 +1,8 @@
 import React from "react"
 import "./itemList.scss"
 
+import PropTypes from "prop-types"
+
 const ItemList = props => {
   const { data, onItemselected, children: renderlabel } = props
 
@@ -26,3 +28,9 @@ const ItemList = props => {
 }
 
 export default ItemList
+
+ItemList.propTypes = {
+  data: PropTypes.array.isRequired,
+  onItemselected: PropTypes.func.isRequired,
+  children: PropTypes.func.isRequired
+}

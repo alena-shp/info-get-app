@@ -1,6 +1,8 @@
 import React from "react"
 import "./itemDetails.scss"
 
+import PropTypes from "prop-types"
+
 // const Record = ({ item, field, label }) => {
 //   return (
 //     <li className="card__description-item">
@@ -12,7 +14,9 @@ import "./itemDetails.scss"
 // export { Record }
 
 const ItemDetails = props => {
+
   const { item, image } = props
+  console.log(props)
 
   const { name } = item
 
@@ -36,3 +40,7 @@ const ItemDetails = props => {
 }
 
 export default ItemDetails
+
+ItemDetails.propTypes = {
+  image: PropTypes.string
+}
