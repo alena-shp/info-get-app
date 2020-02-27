@@ -2,6 +2,9 @@ import React from "react"
 import "./itemList.scss"
 
 const ItemList = props => {
+  ItemList.defaultProps = {
+    onItemselected: () => {}
+  }
   const { data, onItemselected, children: renderlabel } = props
 
   const items = data.map(item => {
