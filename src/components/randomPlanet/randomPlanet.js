@@ -3,6 +3,7 @@ import "./randomPlanet.scss"
 import swapiService from "./../../services/swapiService"
 import Spinner from "../spinner"
 import ErrorIndicator from "../errorIndicator"
+import PropTypes from "prop-types"
 
 export default class RandomPlanet extends React.Component {
   static defaultProps = {
@@ -59,6 +60,12 @@ export default class RandomPlanet extends React.Component {
       </div>
     )
   }
+}
+
+RandomPlanet.propTypes = {
+  upDataUnterval: PropTypes.number,
+  loading: PropTypes.bool,
+  err: PropTypes.bool
 }
 
 const PlanetView = ({ planet }) => {
