@@ -4,13 +4,7 @@ import { PlanetsItemList } from "../wrapper-component"
 
 const PagePlanets = ({ history }) => {
   console.log(history)
-  return (
-    <PlanetsItemList
-      onItemselected={itemId => {
-        history.push(`/planets/${itemId}`)
-      }}
-    />
-  )
+  return <PlanetsItemList onItemselected={itemId => history.push(itemId)} />
 }
 
 export default withRouter(PagePlanets)
