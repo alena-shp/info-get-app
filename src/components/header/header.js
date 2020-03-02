@@ -5,9 +5,9 @@ import "./header.scss"
 const Header = () => {
   return (
     <div className="header">
-      <a href="0#" className="header__text">
+      <Link to="/" className="header__text">
         STAR DB
-      </a>
+      </Link>
       <ul className="header__menu">
         <li>
           <Link to="/people">People</Link>

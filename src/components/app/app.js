@@ -23,6 +23,7 @@ const App = () => {
           <div className="app">
             <Header />
             <RandomPlanet />
+            <Route path="/" render={() => "Welcome in board"} exact />
             <Route path="/people" component={PagePeople} />
             <Route path="/planets" component={PagePlanets} />
             <Route path="/starships" component={PageStarships} />
