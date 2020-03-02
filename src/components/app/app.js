@@ -12,7 +12,11 @@ import PagePeople from "../pages/pagePeople"
 import ErrorBoundary from "../errorBoundary/errorBoundary"
 import PagePlanets from "../pages/pagePlanets"
 import PageStarships from "../pages/pageStarships"
-import { PersonDetails } from "../wrapper-component"
+import {
+  PersonDetails,
+  PlanetDetails,
+  StarshipDetails
+} from "../wrapper-component"
 
 const App = () => {
   const swapiData = new swapiService()
@@ -26,11 +30,21 @@ const App = () => {
             <RandomPlanet />
             <Route path="/" render={() => "Welcome in board"} exact />
             <Route path="/people" component={PagePeople} exact />
-            <Route path="/planets" component={PagePlanets} />
-            <Route path="/starships" component={PageStarships} />
+            <Route path="/planets" component={PagePlanets} exact />
+            <Route path="/starships" component={PageStarships} exact />
             <Route
               path="/people/:id/"
               render={({ match }) => <PersonDetails itemId={match.params.id} />}
+            />
+            <Route
+              path="/planets/:id/"
+              render={({ match }) => <PlanetDetails itemId={match.params.id} />}
+            />
+            <Route
+              path="/starships/:id/"
+              render={({ match }) => (
+                <StarshipDetails itemId={match.params.id} />
+              )}
             />
           </div>
         </Router>
