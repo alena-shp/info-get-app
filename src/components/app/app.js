@@ -1,4 +1,6 @@
 import React from "react"
+import { BrowserRouter as Router } from "react-router-dom"
+import { Route } from "react-router-dom"
 import "./app.scss"
 
 import swapiService from "./../../services/swapiService"

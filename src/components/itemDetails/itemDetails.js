@@ -16,7 +16,6 @@ import PropTypes from "prop-types"
 const ItemDetails = props => {
 
   const { item, image } = props
-  console.log(props)
 
   const { name } = item
 
