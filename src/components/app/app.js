@@ -19,13 +19,15 @@ const App = () => {
   return (
     <ErrorBoundary>
       <SwapiProveder value={swapiData}>
-        <div className="app">
-          <Header />
-          <RandomPlanet />
-          <PagePeople />
-          <PagePlanets />
-          <PageStarships />
-        </div>
+        <Router>
+          <div className="app">
+            <Header />
+            <RandomPlanet />
+            <Route path="/people" component={PagePeople} />
+            <Route path="/planets" component={PagePlanets} />
+            <Route path="/starships" component={PageStarships} />
+          </div>
+        </Router>
       </SwapiProveder>
     </ErrorBoundary>
   )
